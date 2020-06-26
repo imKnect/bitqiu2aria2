@@ -3,7 +3,7 @@
 // @namespace   Bitqiu Export downloads to Aria2 RPC
 // @version     0.1
 // @author      Krazys
-// @description 2020/6/26 下午3:17:13
+// @description 调用 Aria2 下载比特球云盘文件。苦于无人开发，故自己瞎几把写了个自用。
 // @license     GPL-3.0 License
 // @downloadURL https://github.com/Krazysdaki/bitqiu2aria2/raw/master/bitqiu.user.js
 // @updateURL   https://github.com/Krazysdaki/bitqiu2aria2/raw/master/bitqiu.user.js
