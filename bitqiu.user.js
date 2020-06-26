@@ -27,12 +27,11 @@
     var $ = window.$;
 
     setTimeout(function(){
-        alert("cnm");
         go();
     }, 2000)
 
     $(window).bind('hashchange', function() {
-        setTimeout(function(){ alert("Hello"); go(); }, 1000);
+        setTimeout(function(){ go(); }, 1000);
     })
 
     function go(){
@@ -64,7 +63,7 @@
                     "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
                 },
                 error: function(data){
-                    alert("获取下载地址出错，请尝试重新刷新页面或重新登陆。无法正常使用时请勿辱骂作者。");
+                    alert("获取下载地址出错，请尝试刷新页面或重新登陆。无法正常使用时请勿辱骂作者。");
                 },
                 success: function(data){
                     var jsondata = JSON.parse(data);
@@ -73,7 +72,7 @@
                     callAria2(url, ua);
                 },
                 failure: function(data){
-                    alert("获取下载地址出错，请尝试重新刷新页面或重新登陆。无法正常使用时请勿辱骂作者。");
+                    alert("获取下载地址出错，请尝试刷新页面或重新登陆。无法正常使用时请勿辱骂作者。");
                 }
             })
         })
@@ -83,11 +82,15 @@
             GM_xmlhttpRequest({
                 url: RPC_URL + PARAMS + btoa(data),
                 method: 'GET',
-                onerror:function(responseText){
-                    console.log(responseText);
+                onerror:function(response){
+                    console.log(response);
+                        alert("调用失败，请检查你的相关配置，尝试刷新页面或重新登陆等，无法正常使用时请勿辱骂作者。");
                 },
-                onload:function(responseText){
-                    console.log(responseText);
+                onload:function(response){
+                    console.log(response);
+                    if (response.status == "200"){
+                        alert("调用 Aria2 下载成功！");
+                    }
                 }
             });
         }
