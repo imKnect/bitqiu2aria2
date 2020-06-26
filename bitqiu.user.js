@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        调用 Aria2 下载比特球云盘文件
 // @namespace   Bitqiu Export downloads to Aria2 RPC
-// @version     0.1
+// @version     0.2
 // @author      Krazys
 // @description 调用 Aria2 下载比特球云盘文件。苦于无人开发，故自己瞎几把写了个自用。
 // @license     GPL-3.0 License
