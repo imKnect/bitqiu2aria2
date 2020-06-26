@@ -4,6 +4,7 @@
 // @version     0.1
 // @author      Krazys
 // @description 2020/6/26 下午3:17:13
+// @license     GPL-3.0 License
 // @downloadURL https://github.com/Krazysdaki/bitqiu2aria2/raw/master/bitqiu.user.js
 // @updateURL   https://github.com/Krazysdaki/bitqiu2aria2/raw/master/bitqiu.user.js
 // @match       https://pan.bitqiu.com/*
