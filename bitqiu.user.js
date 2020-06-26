@@ -4,8 +4,8 @@
 // @version     0.1
 // @author      Krazys
 // @description 2020/6/26 下午3:17:13
-// @downloadURL 
-// @updateURL   
+// @downloadURL https://github.com/Krazysdaki/bitqiu2aria2/raw/master/bitqiu.user.js
+// @updateURL   https://github.com/Krazysdaki/bitqiu2aria2/raw/master/bitqiu.user.js
 // @match       https://pan.bitqiu.com/*
 // @require     https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js
 // @grant       GM_xmlhttpRequest
