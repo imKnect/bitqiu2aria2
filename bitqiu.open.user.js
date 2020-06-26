@@ -4,6 +4,7 @@
 // @version     0.2
 // @author      Krazys
 // @description 调用 Aria2 下载比特球云盘文件。苦于无人开发，故自己瞎几把写了个自用。
+// @license     GPL-3.0-or-later; http://www.gnu.org/licenses/gpl-3.0.txt
 // @downloadURL https://github.com/Krazysdaki/bitqiu2aria2/raw/master/bitqiu.user.js
 // @updateURL   https://github.com/Krazysdaki/bitqiu2aria2/raw/master/bitqiu.user.js
 // @match       https://pan.bitqiu.com/*
