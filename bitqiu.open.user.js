@@ -5,8 +5,8 @@
 // @author      Knect
 // @description 调用 Aria2 下载比特球云盘文件。苦于无人开发，故自己瞎几把写了个自用。
 // @license     GPL-3.0-or-later; http://www.gnu.org/licenses/gpl-3.0.txt
-// @downloadURL https://github.com/Krazysdaki/bitqiu2aria2/raw/master/bitqiu.user.js
-// @updateURL   https://github.com/Krazysdaki/bitqiu2aria2/raw/master/bitqiu.user.js
+// @downloadURL https://github.com/imKnect/bitqiu2aria2/raw/master/bitqiu.user.js
+// @updateURL   https://github.com/imKnect/bitqiu2aria2/raw/master/bitqiu.user.js
 // @match       https://pan.bitqiu.com/*
 // @require     https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js
 // @grant       GM_xmlhttpRequest
@@ -54,7 +54,7 @@
         }
 
         $(".aria2-btn").click(function () {
-            
+
             var data_index = $(this).parent().parent().attr("data-index");
             var fid = App.$vue.$store.getters["filelist/fileList"][data_index].resourceId;
 

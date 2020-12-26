@@ -84,7 +84,7 @@
         function callAria2(url, ua) {
 
             var data = "[\"token:" + RPC_TOKEN + "\", [\"" + url + "\"], {\"header\":[\"User-Agent: " + ua + "\"]}]";
-            
+
             GM_xmlhttpRequest({
                 url: RPC_URL + PARAMS + btoa(data),
                 method: 'GET',
