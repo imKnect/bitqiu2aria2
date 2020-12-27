@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        调用 Aria2 下载比特球云盘文件
 // @namespace   Bitqiu Export downloads to Aria2 RPC
-// @version     0.3
+// @version     0.4
 // @author      Knect
 // @description 调用 Aria2 下载比特球云盘文件。苦于无人开发，故自己瞎几把写了个自用。
 // @license     GPL-3.0-or-later; http://www.gnu.org/licenses/gpl-3.0.txt
@@ -24,17 +24,29 @@
     var RPC_TOKEN = "123456789"; // 改成 Aria2 RPC 的密钥
     var PARAMS = "?method=aria2.addUri&id=foo&params="; // 一般无需修改
 
-    var $ = window.$;
-
     setTimeout(function () {
         go();
-    }, 2000)
+    }, 1000)
 
-    $(window).bind('hashchange', function () {
-        setTimeout(function () {
-            go();
-        }, 1000);
-    })
+    var oldURL = document.URL;
+    var newURL = document.URL;
+
+    setInterval(function () {
+        if (isUrlChanged()) {
+            setTimeout(() => {
+                go();
+            }, 1000);
+        }
+    }, 50);
+
+    function isUrlChanged() {
+        newURL = document.URL;
+        if (newURL != oldURL) {
+            oldURL = newURL;
+            return true;
+        }
+        return false;
+    }
 
     function go() {
 
@@ -66,8 +78,8 @@
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
                 },
-                error: function (data) {
-                    alert("获取下载地址出错，请尝试刷新页面或重新登陆。无法正常使用时请勿辱骂作者。");
+                error: function () {
+                    alert("获取下载地址出错，请尝试刷新页面或重新登陆。");
                 },
                 success: function (data) {
                     var jsondata = JSON.parse(data);
@@ -75,8 +87,8 @@
                     var ua = navigator.userAgent;
                     callAria2(url, ua);
                 },
-                failure: function (data) {
-                    alert("获取下载地址出错，请尝试刷新页面或重新登陆。无法正常使用时请勿辱骂作者。");
+                failure: function () {
+                    alert("获取下载地址出错，请尝试刷新页面或重新登陆。");
                 }
             })
         })
@@ -88,7 +100,7 @@
                 method: 'GET',
                 onerror: function (response) {
                     console.log(response);
-                    alert("调用失败，请检查你的相关配置，尝试刷新页面或重新登陆等，无法正常使用时请勿辱骂作者。");
+                    alert("调用失败，请检查你的相关配置，尝试刷新页面或重新登陆。");
                 },
                 onload: function (response) {
                     console.log(response);
