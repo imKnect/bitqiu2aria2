@@ -8,7 +8,6 @@
 // @downloadURL https://github.com/imKnect/bitqiu2aria2/raw/master/bitqiu.user.js
 // @updateURL   https://github.com/imKnect/bitqiu2aria2/raw/master/bitqiu.user.js
 // @match       https://pan.bitqiu.com/*
-// @require     https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js
 // @grant       GM_xmlhttpRequest
 // @connect     localhost
 // @connect     127.0.0.1
