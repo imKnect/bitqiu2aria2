@@ -1,18 +1,23 @@
 // ==UserScript==
 // @name        调用 Aria2 下载比特球云盘文件
 // @namespace   Bitqiu Export downloads to Aria2 RPC
-// @version     0.4
+// @version     0.5
 // @author      Knect
 // @description 调用 Aria2 下载比特球云盘文件。苦于无人开发，故自己瞎几把写了个自用。
 // @license     GPL-3.0 License
 // @downloadURL https://github.com/imKnect/bitqiu2aria2/raw/master/bitqiu.user.js
 // @updateURL   https://github.com/imKnect/bitqiu2aria2/raw/master/bitqiu.user.js
 // @match       https://pan.bitqiu.com/*
+// @require     https://cdn.jsdelivr.net/npm/toastify-js
+// @resource css https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css
 // @grant       GM_xmlhttpRequest
+// @grant       GM_addStyle
+// @grant       GM_addElement
+// @grant       GM_getResourceText
 // @connect     localhost
 // @connect     127.0.0.1
-// @connect     10.1.1.6
-// @connect     my.ariang.net
+// @connect     10.1.1.5
+// @connect     192.168.1.10
 // ==/UserScript==
 
 //###### 请在上方加入一行 "// @connect 【你的 Aria2 RPC 地址】"，已有例子，请照着写。本地运行忽略此条。######
@@ -22,6 +27,13 @@
     var RPC_URL = "http://127.0.0.1:6800/jsonrpc"; // 改成 Aria2 RPC 的地址，一般只需修改 IP/域名 部分
     var RPC_TOKEN = "123456789"; // 改成 Aria2 RPC 的密钥
     var PARAMS = "?method=aria2.addUri&id=foo&params="; // 一般无需修改
+
+    GM_addElement('script', {
+        src: 'https://cdn.jsdelivr.net/npm/toastify-js',
+        type: 'text/javascript'
+    })
+
+    GM_addStyle(GM_getResourceText("css"))
 
     setTimeout(function () {
         go();
@@ -78,7 +90,11 @@
                     "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
                 },
                 error: function () {
-                    alert("获取下载地址出错，请尝试刷新页面或重新登陆。");
+                    //alert("获取下载地址出错，请尝试刷新页面或重新登陆。");
+                    Toastify({
+                        text: "获取下载地址出错，请尝试刷新页面或重新登陆。",
+                        duration: 3000
+                    }).showToast();
                 },
                 success: function (data) {
                     var jsondata = JSON.parse(data);
@@ -87,7 +103,11 @@
                     callAria2(url, ua);
                 },
                 failure: function () {
-                    alert("获取下载地址出错，请尝试刷新页面或重新登陆。");
+                    //alert("获取下载地址出错，请尝试刷新页面或重新登陆。");
+                    Toastify({
+                        text: "获取下载地址出错，请尝试刷新页面或重新登陆。",
+                        duration: 3000
+                    }).showToast();
                 }
             })
         })
@@ -101,12 +121,19 @@
                 method: 'GET',
                 onerror: function (response) {
                     console.log(response);
-                    alert("调用失败，请检查你的相关配置，尝试刷新页面或重新登陆。");
+                    //alert("调用失败，请检查你的相关配置，尝试刷新页面或重新登陆。");
+                    Toastify({
+                        text: "调用失败，请检查你的相关配置，尝试刷新页面或重新登陆。",
+                        duration: 3000
+                    }).showToast();
                 },
                 onload: function (response) {
                     console.log(response);
                     if (response.status == "200") {
-                        alert("调用 Aria2 下载成功！");
+                        Toastify({
+                            text: "调用 Aria2 下载成功！",
+                            duration: 3000
+                        }).showToast();
                     }
                 }
             });
